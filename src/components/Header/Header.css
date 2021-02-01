@@ -1,0 +1,9 @@
+.main-header {
+    text-align: center;
+    background-color: var(--primary-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.main-header-title {
+    padding: 1rem 0;
+}
