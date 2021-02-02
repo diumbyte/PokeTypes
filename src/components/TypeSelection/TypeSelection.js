@@ -18,7 +18,6 @@ export default class TypeSelection extends Component {
 
     // Function signature like this to easily pass to Autosuggestion component
     onInputChange = (newValue) => {
-        console.log("newValue", newValue.length, newValue);
         this.setState({
             inputValue: newValue
         })
@@ -56,7 +55,14 @@ export default class TypeSelection extends Component {
                     keys={["name"]}
                     suggestionProp={"name"}
                     onSuggestionSelected={(e, {suggestion}) => {
-                        onTypeSelectionChange(suggestion.name)
+                        // Example suggestion.url = https://pokeapi.co/api/v2/pokemon/10/
+                        // Want the last URL segment
+                        const segments = suggestion.url.split('/');
+                        // If there's a trailing slash pop() will return an empty string "" = false
+                        // Short circuit fails so pop is executed again only if there's a trailing slash
+                        const lastSegment = segments.pop() || segments.pop(); 
+
+                        onTypeSelectionChange(lastSegment)
                     }}
                 />
             </div>

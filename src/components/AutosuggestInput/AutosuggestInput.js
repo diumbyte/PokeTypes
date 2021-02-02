@@ -26,7 +26,6 @@ class AutosuggestInput extends Component {
         const inputLength = value.trim().length;
 
         const { optionsList } = this.props;
-        console.log("optionsList", optionsList);
         const fuseOpts = {
             threshold: 0.3,
             keys
