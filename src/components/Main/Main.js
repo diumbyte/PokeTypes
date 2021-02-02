@@ -4,25 +4,32 @@ import './Main.css'
 
 export default class Main extends Component {
 
-    types = ["bug", "dark", "dragon", 
-            "electric", "fairy", "fighting", 
-            "fire", "flying", "ghost",
-            "grass", "ground", "ice", 
-            "normal", "poison", "psychic",
-            "rock", "steel", "water"];
+    // types = ["bug", "dark", "dragon", 
+    //         "electric", "fairy", "fighting", 
+    //         "fire", "flying", "ghost",
+    //         "grass", "ground", "ice", 
+    //         "normal", "poison", "psychic",
+    //         "rock", "steel", "water"];
+
+    types = ["bug"]
 
     constructor(props) {
         super(props)
-        
-        this.state = this.types.reduce( (acc, curr) => 
-                        {
-                            acc[curr] = {
-                                type: curr,
-                                value: ''
+
+        // Object with properties of each type
+        /*
+        {
+            bug: "pokemonName"
+        }
+        */
+        const pokeTypesList = this.types.reduce( (acc, curr) => 
+                            {
+                                acc[curr] = ''
+                                return acc;
                             }
-                            return acc;
-                        }
-                        , {});
+                            , {});
+        
+        this.state = pokeTypesList;
     }
 
     onTypeSelectionChange = (type) => (value) => {
@@ -38,10 +45,11 @@ export default class Main extends Component {
         return (
             <div className="container main-container">
                 <div className="half-container selections-container">
-                    { Object.keys(this.state).map(prop => (
+                    { Object.keys(this.state).map(type => (
                         <TypeSelection 
-                            key={prop}
-                            type={prop}
+                            key={type}
+                            type={type}
+                            onTypeSelectionChange={this.onTypeSelectionChange(type)}
                         />
                     ) )}
                 </div>

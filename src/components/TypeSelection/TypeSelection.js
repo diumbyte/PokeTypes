@@ -1,27 +1,50 @@
 import { Component } from 'react';
 import AutosuggestInput from '../AutosuggestInput/AutosuggestInput';
+import axios from 'axios';
+import { capitalizeString } from '../../utils/stringHelpers'
 import './TypeSelection.css'
 
 export default class TypeSelection extends Component {
+    basePokeAPI = "https://pokeapi.co/api/v2";
 
     constructor(props) {
         super(props)
         
         this.state = {
+            pokemonList: [],
             inputValue: ''
         };
     }
 
     // Function signature like this to easily pass to Autosuggestion component
-    onInputChange = (e, { newValue, method}) => {
+    onInputChange = (newValue) => {
+        console.log("newValue", newValue.length, newValue);
         this.setState({
             inputValue: newValue
         })
     }
 
-    render() {
-        const { inputValue } = this.state;
+    componentDidMount = async () => {
         const { type } = this.props;
+        const { data: {pokemon: pokemonResList} } = await axios.get(`${this.basePokeAPI}/type/${type}`);
+        // API response looks like:
+            // pokemon: { name: "", url: "API Url to specific pokemon"}
+        const pokemonList = pokemonResList.map(item => (
+            {
+                name: capitalizeString(item.pokemon.name),
+                url: item.pokemon.url
+            }
+        ))
+
+        this.setState({
+            pokemonList
+        })
+    }
+
+    render() {
+        const { inputValue, pokemonList } = this.state;
+        const { type, onTypeSelectionChange } = this.props;
+
         return (
             <div>
                 <AutosuggestInput 
@@ -29,9 +52,12 @@ export default class TypeSelection extends Component {
                     id={type}
                     type={type}
                     onInputChange={this.onInputChange}
-                    // optionsList={API of all pokemon of specific type}
-                    // keys={["Property Name"]}
-                    // suggestionProp={"Property Name"}
+                    optionsList={pokemonList}
+                    keys={["name"]}
+                    suggestionProp={"name"}
+                    onSuggestionSelected={(e, {suggestion}) => {
+                        onTypeSelectionChange(suggestion.name)
+                    }}
                 />
             </div>
         );

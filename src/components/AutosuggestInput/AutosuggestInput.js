@@ -15,7 +15,7 @@ class AutosuggestInput extends Component {
     }
 
     //**** Autosuggest boilerplate **** //
-    onAutocompleteChange = (e, {newValue, method}) => {
+    onAutocompleteChange = (e, { newValue, method }) => {
         const { onInputChange } = this.props;
 
         onInputChange(newValue);
@@ -26,13 +26,14 @@ class AutosuggestInput extends Component {
         const inputLength = value.trim().length;
 
         const { optionsList } = this.props;
+        console.log("optionsList", optionsList);
         const fuseOpts = {
             threshold: 0.3,
             keys
         }
 
         const fuse = new Fuse(optionsList, fuseOpts);
-        const results = fuse.search(value).map(sugg => sugg.item);
+        const results = fuse.search(value.trim()).map(sugg => sugg.item);
 
         return inputLength === 0
             ? []
@@ -69,13 +70,13 @@ class AutosuggestInput extends Component {
             value,
             id,
             type,
-            onInputChange,
+            onSuggestionSelected
         } = this.props;
 
         const inputProps = {
             placeholder: `Search ${type} types`,
             value,
-            onChange: onInputChange
+            onChange: this.onAutocompleteChange
         }
         
         return (
@@ -87,6 +88,7 @@ class AutosuggestInput extends Component {
                 getSuggestionValue={this.getSuggestionValue}
                 renderSuggestion={this.renderSuggestion}
                 inputProps={inputProps} 
+                onSuggestionSelected={onSuggestionSelected}
             />
         );
     }
@@ -98,7 +100,7 @@ AutosuggestInput.propTypes = {
     type: PropTypes.string.isRequired,
     onInputChange: PropTypes.func.isRequired,
     keys: PropTypes.arrayOf(PropTypes.string).isRequired,
-    optionsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    optionsList: PropTypes.arrayOf(PropTypes.object).isRequired,
     suggestionProp: PropTypes.string.isRequired,
 }
 
