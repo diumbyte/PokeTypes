@@ -48,24 +48,26 @@ export default class Main extends Component {
 
     render() {
         return (
-            <div className="container main-container">
-                <div className="half-container grid-container selections-container">
+            <div className="container  main-container">
+                {/* <div className="half-container grid-container selections-container">
                     { Object.keys(this.state).map(type => (
-                        <TypeSelection 
-                            key={type}
-                            type={type}
-                            onTypeSelectionChange={this.onTypeSelectionChange(type)}
-                        />
+
                     ) )}
-                </div>
-                <div className="half-container grid-container results-container">
+                </div> */}
+                <div className="grid-container results-container">
                     { Object.keys(this.state).map(type => (
                         <TypeResult 
                             key={type}
                             type={type}
                             pokeId={this.state[type].id}
                             pokeName={this.state[type].name}
-                        />
+                        >
+                            <TypeSelection 
+                                key={type}
+                                type={type}
+                                onTypeSelectionChange={this.onTypeSelectionChange(type)}
+                            />
+                        </TypeResult>
                     ) )}
                 </div>
             </div>
