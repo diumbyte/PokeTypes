@@ -14,10 +14,8 @@
 }
 
 @media (max-width:768px) {
-  .main-container {
-    flex-direction: column;
-  }
   .half-container {
+    align-items: center;
     margin-bottom: 1rem;
   }
 }

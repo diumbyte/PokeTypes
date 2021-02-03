@@ -62,7 +62,7 @@ export default class TypeSelection extends Component {
                         // Short circuit fails so pop is executed again only if there's a trailing slash
                         const lastSegment = segments.pop() || segments.pop(); 
 
-                        onTypeSelectionChange(lastSegment)
+                        onTypeSelectionChange({id: lastSegment, name: suggestion.name})
                     }}
                 />
             </div>

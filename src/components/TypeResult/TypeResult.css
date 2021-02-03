@@ -1,0 +1,28 @@
+
+.result-card___header {
+    display: flex;
+    padding: 1rem;
+    border-radius: 10px 10px 0 0;
+    align-items: center;
+}
+
+.result-card___type-icon {
+    width: 1.75rem;
+}
+
+.result-card___body {
+    border: 3px solid var(--border-dark)
+}
+
+.result-card___body img {
+    margin: auto;
+}
+
+.result-card___type {
+    margin-left: .5rem;
+}
+
+.result-card___name {
+    margin-left: auto;
+    margin-right: .5rem;
+}

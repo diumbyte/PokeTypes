@@ -13,7 +13,7 @@ export default class Main extends Component {
     //         "normal", "poison", "psychic",
     //         "rock", "steel", "water"];
 
-    types = ["bug"]
+    types = ["bug", "dark", "dragon"]
 
     constructor(props) {
         super(props)
@@ -26,7 +26,10 @@ export default class Main extends Component {
         */
         const pokeTypesList = this.types.reduce( (acc, curr) => 
                             {
-                                acc[curr] = ''
+                                acc[curr] = {
+                                    id: '',
+                                    name: ''
+                                }
                                 return acc;
                             }
                             , {});
@@ -34,16 +37,19 @@ export default class Main extends Component {
         this.state = pokeTypesList;
     }
 
-    onTypeSelectionChange = (type) => (value) => {
+    onTypeSelectionChange = (type) => ({id, name}) => {
         this.setState({
-            [type]: value
+            [type]: {
+                id,
+                name
+            }
         })
     }
 
     render() {
         return (
             <div className="container main-container">
-                <div className="half-container selections-container">
+                <div className="half-container grid-container selections-container">
                     { Object.keys(this.state).map(type => (
                         <TypeSelection 
                             key={type}
@@ -52,12 +58,13 @@ export default class Main extends Component {
                         />
                     ) )}
                 </div>
-                <div className="half-container results-container">
+                <div className="half-container grid-container results-container">
                     { Object.keys(this.state).map(type => (
                         <TypeResult 
                             key={type}
                             type={type}
-                            value={this.state[type]}
+                            pokeId={this.state[type].id}
+                            pokeName={this.state[type].name}
                         />
                     ) )}
                 </div>
