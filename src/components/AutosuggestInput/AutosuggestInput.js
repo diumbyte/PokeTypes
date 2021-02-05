@@ -61,7 +61,9 @@ class AutosuggestInput extends Component {
         })
     }
 
-    shouldRenderSuggestions = () => true;
+    shouldRenderSuggestions = () => {
+        return true;
+    };
 
 
     render() {
