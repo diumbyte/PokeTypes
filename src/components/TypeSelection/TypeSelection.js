@@ -45,27 +45,25 @@ export default class TypeSelection extends Component {
         const { type, onTypeSelectionChange } = this.props;
 
         return (
-            <div>
-                <AutosuggestInput 
-                    value={inputValue}
-                    id={type}
-                    type={type}
-                    onInputChange={this.onInputChange}
-                    optionsList={pokemonList}
-                    keys={["name"]}
-                    suggestionProp={"name"}
-                    onSuggestionSelected={(e, {suggestion}) => {
-                        // Example suggestion.url = https://pokeapi.co/api/v2/pokemon/10/
-                        // Want the last URL segment
-                        const segments = suggestion.url.split('/');
-                        // If there's a trailing slash pop() will return an empty string "" = false
-                        // Short circuit fails so pop is executed again only if there's a trailing slash
-                        const lastSegment = segments.pop() || segments.pop(); 
+            <AutosuggestInput 
+                value={inputValue}
+                id={type}
+                type={type}
+                onInputChange={this.onInputChange}
+                optionsList={pokemonList}
+                keys={["name"]}
+                suggestionProp={"name"}
+                onSuggestionSelected={(e, {suggestion}) => {
+                    // Example suggestion.url = https://pokeapi.co/api/v2/pokemon/10/
+                    // Want the last URL segment
+                    const segments = suggestion.url.split('/');
+                    // If there's a trailing slash pop() will return an empty string "" = false
+                    // Short circuit fails so pop is executed again only if there's a trailing slash
+                    const lastSegment = segments.pop() || segments.pop(); 
 
-                        onTypeSelectionChange({id: lastSegment, name: suggestion.name})
-                    }}
-                />
-            </div>
+                    onTypeSelectionChange({id: lastSegment, name: suggestion.name})
+                }}
+            />
         );
     }
 }

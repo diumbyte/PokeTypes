@@ -5,15 +5,14 @@ import './Main.css'
 
 export default class Main extends Component {
 
-    // TODO: Create this array by just looking at type icon filenames in /src/assets/
-    // types = ["bug", "dark", "dragon", 
-    //         "electric", "fairy", "fighting", 
-    //         "fire", "flying", "ghost",
-    //         "grass", "ground", "ice", 
-    //         "normal", "poison", "psychic",
-    //         "rock", "steel", "water"];
+    types = ["bug", "dark", "dragon", 
+            "electric", "fairy", "fighting", 
+            "fire", "flying", "ghost",
+            "grass", "ground", "ice", 
+            "normal", "poison", "psychic",
+            "rock", "steel", "water"];
 
-    types = ["bug", "dark", "dragon"]
+    // types = ["bug", "dark", "dragon"]
 
     constructor(props) {
         super(props)
@@ -49,18 +48,12 @@ export default class Main extends Component {
     render() {
         return (
             <div className="container  main-container">
-                {/* <div className="half-container grid-container selections-container">
-                    { Object.keys(this.state).map(type => (
-
-                    ) )}
-                </div> */}
                 <div className="grid-container results-container">
                     { Object.keys(this.state).map(type => (
                         <TypeResult 
                             key={type}
                             type={type}
                             pokeId={this.state[type].id}
-                            pokeName={this.state[type].name}
                         >
                             <TypeSelection 
                                 key={type}

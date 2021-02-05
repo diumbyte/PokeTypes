@@ -13,7 +13,7 @@
     flex: 0 1 calc(33% - 1rem);
 }
 
-@media (max-width: 1130px) {
+@media (max-width: 768px) {
     .grid-container > * {
         flex: 0 1 100%;
     }

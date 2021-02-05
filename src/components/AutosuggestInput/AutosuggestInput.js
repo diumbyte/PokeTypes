@@ -61,6 +61,7 @@ class AutosuggestInput extends Component {
         })
     }
 
+    shouldRenderSuggestions = () => true;
 
 
     render() {
@@ -75,6 +76,10 @@ class AutosuggestInput extends Component {
         const inputProps = {
             placeholder: `Search ${type} types`,
             value,
+            autocomplete: false,
+            autocorrect: false,
+            autocapitalize: false,
+            spellcheck: false,
             onChange: this.onAutocompleteChange
         }
         
@@ -88,6 +93,7 @@ class AutosuggestInput extends Component {
                 renderSuggestion={this.renderSuggestion}
                 inputProps={inputProps} 
                 onSuggestionSelected={onSuggestionSelected}
+                shouldRenderSuggestions={this.shouldRenderSuggestions}
             />
         );
     }

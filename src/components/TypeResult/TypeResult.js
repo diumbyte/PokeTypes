@@ -2,9 +2,7 @@ import { pokeIdToSpriteURL, typeToHex } from '../../utils/displayHelpers';
 import { capitalizeString } from '../../utils/stringHelpers';
 import './TypeResult.css';
 
-// TODO: Create a placeholder unknown image for pokemon that haven't been selected yet.
-    // Or a blank transparent background
-const TypeResult = ({type, pokeId, pokeName, children}) => {
+const TypeResult = ({type, pokeId, children}) => {
     return(
         <div className="result-card">
             <div className="result-card___header" style={{backgroundColor: typeToHex(type)}}>
