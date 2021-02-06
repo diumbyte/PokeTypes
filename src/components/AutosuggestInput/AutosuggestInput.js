@@ -35,7 +35,7 @@ class AutosuggestInput extends Component {
         const results = fuse.search(value.trim()).map(sugg => sugg.item);
 
         return inputLength === 0
-            ? []
+            ? optionsList
             : results;
     }
 
@@ -61,9 +61,9 @@ class AutosuggestInput extends Component {
         })
     }
 
-    shouldRenderSuggestions = () => {
+    shouldRenderSuggestions() {
         return true;
-    };
+    } 
 
 
     render() {

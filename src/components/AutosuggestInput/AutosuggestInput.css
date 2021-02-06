@@ -20,9 +20,9 @@
     border-bottom-right-radius: 0;
 }
 
-/* .react-autosuggest__suggestions-container {
+.react-autosuggest__suggestions-container {
     display: none;
-} */
+}
 
 .react-autosuggest__suggestions-container--open {
     display: block;
@@ -31,7 +31,6 @@
     width: 100%;
     border: 1px solid #aaa;
     background-color: var(--tertiary-dark);
-    font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 16px;
     border-bottom-left-radius: 4px;
